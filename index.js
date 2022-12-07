@@ -12,4 +12,6 @@ const targetRepo =
 
 const targetFolder = process.argv[2] || 'template';
 
-shell.exec(`git clone ${targetRepo} ${targetFolder}`);
+shell.exec(
+	`git clone ${targetRepo} ${targetFolder} && cd ${targetFolder} && npm install && rm -rf .git`
+);
