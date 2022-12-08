@@ -12,6 +12,12 @@ const targetRepo =
 
 const targetFolder = process.argv[2] || 'template';
 
-shell.exec(
-	`git clone ${targetRepo} ${targetFolder} && cd ${targetFolder} && npm install && rm -rf .git`
-);
+const steps = [
+	`git clone ${targetRepo} ${targetFolder}`,
+	`cd ${targetFolder}`,
+	'echo "Installing dependencies..."',
+	`npm install`,
+	`rm -rf .git`,
+];
+
+shell.exec(steps.join(' && '));
